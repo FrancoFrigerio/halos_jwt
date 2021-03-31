@@ -5,6 +5,14 @@ require ('dotenv').config();
 const app = express();
 app.use(express.json())
 
+//cors
+const cors = require('cors');
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus:200
+}
+app.use(cors(corsOptions))
+
 //conexion a base de datos
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.usinr.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`
 const options= {useNewUrlParser:true , useUnifiedTopology:true}
