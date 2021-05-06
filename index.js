@@ -13,6 +13,11 @@ var corsOptions = {
 }
 app.use(cors(corsOptions))
 
+
+
+
+
+
 //conexion a base de datos
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.usinr.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`
 const options= {useNewUrlParser:true , useUnifiedTopology:true}
@@ -27,8 +32,13 @@ mongoose.connect(uri,options)
     const authRoutes = require('./routes/auth')
     const validaToken = require('./routes/verifyToken')
     const admin = require('./routes/admin')
-    
+    const mp = require('./routes/mp')
+
     //middleware
+    app.use('/api/pago' ,(req,res)=>{
+        res.send('Api mercadopago')
+    })
+    app.use('/api/mp', mp);
     app.use('/api/user', authRoutes);
     app.use('/api/admin',validaToken, admin)
     app.get('/' , (req,res)=>{
