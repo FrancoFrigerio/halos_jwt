@@ -1,3 +1,3 @@
 # halos_jwt
-##in branch master
+In branch master
 Node.js - MongoDB - JWT
